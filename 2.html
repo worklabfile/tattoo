@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAXARRNAYA ТАТУ - Санкт-Петербург</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Font Awesome для иконок мессенджеров -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Стилизация -->
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333333;
+            overflow-x: hidden;
+        }
+
+        /* Шапка сайта с фоновой фотографией */
+        header {
+            position: relative;
+            background-image: url('https://static.tildacdn.info/tild3830-3638-4032-b638-326433313932/photo_2023-10-31_08-.jpg'); /* Главная фотография */
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Полная высота экрана */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Затемнение для улучшения читаемости текста поверх фото */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        /* Контейнер для текста в шапке */
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
+        }
+
+        /* Анимация рукописного текста */
+        .animated-title {
+            font-family: 'Pacifico', cursive; /* Рукописный шрифт */
+            font-size: 3rem;
+            margin: 10px 0;
+            overflow: hidden; /* Для эффекта печати */
+            /* Удален курсор */
+            white-space: nowrap; /* Не переносить текст */
+            letter-spacing: .15em; /* Межбуквенный интервал */
+            animation: typing 1.5s steps(30, end); /* Увеличена скорость и удалена анимация курсора */
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* Удалена анимация мигающего курсора */
+        /*
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+        */
+
+        header p {
+            margin: 20px 0 0 0;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        nav {
+            background-color: #333333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff9800;
+        }
+
+        /* Кнопка меню для мобильных устройств */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin-bottom: 4px;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Стили для секции Работы */
+        .works-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .work-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .work-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .work-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Стили для секции Цены */
+        .prices-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .price-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            margin-bottom: 20px;
+            transition: transform 0.3s, border 0.3s;
+        }
+
+        .price-item:hover {
+            transform: scale(1.05);
+            border: 2px solid #ff9800;
+        }
+
+        .price-item h3 {
+            font-size: 1.4rem;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        .price-item p {
+            font-size: 1rem;
+            color: #666666;
+            margin: 5px 0;
+        }
+
+        /* Стили для секции Обо мне */
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .about-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .about-content div {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .about-content h3 {
+            font-size: 1.4rem;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            color: #666666;
+        }
+
+        /* Стили для секции Правила */
+        .rules-section {
+            text-align: center;
+        }
+
+        .rules-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .rules-section p {
+            font-size: 1.2rem;
+            color: #666666;
+            margin-bottom: 40px;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .rule-item {
+            position: relative;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s, border 0.3s;
+        }
+
+        .rule-item .number {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            background-color: #ff9800;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .rule-item h3 {
+            margin-top: 20px;
+            font-size: 1.4rem;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        .rule-item p {
+            font-size: 1rem;
+            color: #666666;
+        }
+
+        /* Стили для секции Приятности */
+        .pleasures-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .pleasures-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .pleasures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .pleasure-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, border 0.3s;
+        }
+
+        .pleasure-item:hover {
+            transform: scale(1.05);
+            border: 2px solid #ff9800;
+        }
+
+        .pleasure-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .pleasure-text h3 {
+            font-size: 1.4rem;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        .pleasure-text p {
+            font-size: 1rem;
+            color: #666666;
+        }
+
+        .pleasure-text ul {
+            list-style: none;
+            padding: 0;
+            color: #666666;
+        }
+
+        .pleasure-text ul li {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        /* Яндекс карта */
+        .map-section {
+            margin: 60px 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px; /* Изменено для мобильных устройств */
+            border: none;
+        }
+
+        .map-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Секция Бесплатная консультация */
+        .contact-section {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            color: #666666;
+            margin: 10px 0;
+        }
+
+        /* Иконки мессенджеров */
+        .messenger-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .messenger-links a {
+            color: #333333;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .messenger-links a:hover {
+            color: #ff9800;
+        }
+
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 1024px) {
+            .animated-title {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .about-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Навигация */
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: #333333;
+                width: 100%;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Заголовки */
+            .works-section h2,
+            .prices-section h2,
+            .about-section h2,
+            .rules-section h1,
+            .pleasures-section h2,
+            .map-section h2,
+            .contact-section h2 {
+                font-size: 1.8rem;
+            }
+
+            /* Карта */
+            .map-container iframe {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Заголовки */
+            .animated-title {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            /* Карта */
+            .map-container iframe {
+                height: 200px;
+            }
+
+            /* Секция Обо мне */
+            .about-content img {
+                width: 100px;
+                height: 100px;
+            }
+
+            /* Секции с карточками */
+            .price-item, .rule-item, .pleasure-item {
+                padding: 15px;
+            }
+
+            .price-item h3, .rule-item h3, .pleasure-text h3 {
+                font-size: 1.2rem;
+            }
+
+            .price-item p, .rule-item p, .pleasure-text p, .pleasure-text ul li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-content">
+            <h1>Санкт-петербург</h1>
+            <div class="animated-title">SAXARRNAYA</div> <!-- Главный анимированный текст -->
+            <p>Безопасно. Комфортно. С любовью.</p>
+        </div>
+    </header>
+
+    <!-- Навигационная панель -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <!-- Можно добавить логотип здесь -->
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-list">
+                <li><a href="#works">Работы</a></li>
+                <li><a href="#prices">Цены</a></li>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#rules">Правила</a></li>
+                <li><a href="#pleasures">Приятности</a></li>
+                <li><a href="#contact">Бесплатная консультация</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Секция Работы -->
+    <section id="works" class="works-section">
+        <h2>Работы</h2>
+        <!-- Галерея с кликабельными изображениями -->
+        <div class="works-grid">
+            <div class="work-item">
+                <a href="https://static.tildacdn.info/tild6161-3835-4132-a636-396239663663/IMG_3454.JPG" target="_blank">
+                    <img src="https://static.tildacdn.info/tild6161-3835-4132-a636-396239663663/IMG_3454.JPG" alt="Работа 1">
+                </a>
+            </div>
+            <div class="work-item">
+                <a href="https://static.tildacdn.info/tild3933-3961-4337-b763-666335313765/IMG_3452.JPG" target="_blank">
+                    <img src="https://static.tildacdn.info/tild3933-3961-4337-b763-666335313765/IMG_3452.JPG" alt="Работа 2">
+                </a>
+            </div>
+            <div class="work-item">
+                <a href="https://static.tildacdn.info/tild6265-6464-4665-b265-653633643131/IMG_3455.JPG" target="_blank">
+                    <img src="https://static.tildacdn.info/tild6265-6464-4665-b265-653633643131/IMG_3455.JPG" alt="Работа 3">
+                </a>
+            </div>
+            <div class="work-item">
+                <a href="https://static.tildacdn.info/tild6364-6266-4539-b361-376634306166/IMG_3450.JPG" target="_blank">
+                    <img src="https://static.tildacdn.info/tild6364-6266-4539-b361-376634306166/IMG_3450.JPG" alt="Работа 4">
+                </a>
+            </div>
+            <div class="work-item">
+                <a href="https://static.tildacdn.info/tild3935-3430-4364-b435-626130373065/IMG_3458.JPG" target="_blank">
+                    <img src="https://static.tildacdn.info/tild3935-3430-4364-b435-626130373065/IMG_3458.JPG" alt="Работа 5">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция Цены -->
+    <section id="prices" class="prices-section">
+        <h2>Цены</h2>
+        <p>Здесь указаны примерные цены. Ценообразование зависит от:</p>
+        <p>расположения, сложности.</p>
+        <p>(Консультация бесплатна и ни к чему не обязывает)</p>
+
+        <div class="price-item">
+            <h3>Мини-тату</h3>
+            <p>— Контур, минимум теней</p>
+            <p>— До 7 см</p>
+            <p>— Подарочный набор</p>
+            <p><strong>От 6.000₽</strong></p>
+            <p>1-2 часа</p>
+        </div>
+        <div class="price-item">
+            <h3>Средние тату</h3>
+            <p>— Контур, тени</p>
+            <p>— 10-20 см</p>
+            <p>— Подарочный набор</p>
+            <p><strong>От 8.000₽</strong></p>
+            <p>2-3 часа</p>
+        </div>
+        <div class="price-item">
+            <h3>За полный сеанс</h3>
+            <p>— Выделяю отдельный день</p>
+            <p>— Для проектов более 20 см, для нескольких проектов</p>
+            <p>— Подарочный набор</p>
+            <p>— Более сложные проекты</p>
+            <p><strong>От 12.000₽</strong></p>
+            <p>Весь день</p>
+        </div>
+    </section>
+
+    <!-- Секция Обо мне -->
+    <section id="about" class="about-section">
+        <h2>Обо мне</h2>
+        <div class="about-content">
+            <img src="https://static.tildacdn.info/tild6661-6638-4064-b639-346132336230/photo_2025-01-21_02-.jpg" alt="Логотип" />
+            <div>
+                <h3>Опыт работы</h3>
+                <p>3 года</p>
+            </div>
+            <div>
+                <h3>Мой путь</h3>
+                <p>Свой путь становления тату-артистом я начала на севере - в Нижневартовске. Но всегда знала, что переберусь в СПб.</p>
+            </div>
+            <div>
+                <h3>Диабет</h3>
+                <p>Уже 10 лет диабетик. Развиваю тему диабета и раскрываю ее с правильной стороны. На мои сеансы можно с диабетом.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция Правила -->
+    <section id="rules" class="rules-section">
+        <h1>Правила</h1>
+        <p>Важно соблюдать некоторые правила для комфортного и безопасного сеанса татуировки.</p>
+        <div class="rules-grid">
+            <div class="rule-item">
+                <div class="number">1</div>
+                <h3>Гигиена</h3>
+                <p>Все инструменты стерилизуются перед каждым сеансом. Используются одноразовые расходные материалы.</p>
+            </div>
+            <div class="rule-item">
+                <div class="number">2</div>
+                <h3>Консультация</h3>
+                <p>Перед началом работы проводится консультация для обсуждения дизайна и деталей татуировки.</p>
+            </div>
+            <div class="rule-item">
+                <div class="number">3</div>
+                <h3>Оплата</h3>
+                <p>Оплата производится после завершения сеанса. При необходимости можно обсудить предоплату.</p>
+            </div>
+            <!-- Добавьте дополнительные правила по необходимости -->
+        </div>
+    </section>
+
+    <!-- Секция Приятности -->
+    <section id="pleasures" class="pleasures-section">
+        <h2>Приятности</h2>
+        <div class="pleasures-content">
+            <!-- Плитка с изображением и текстом -->
+            <div class="pleasures-grid">
+                <div class="pleasure-item">
+                    <img src="https://static.tildacdn.info/tild3863-6162-4636-b332-623263616530/photo_2025-01-21_02-.jpg" alt="Комфорт" class="pleasure-img">
+                    <div class="pleasure-text">
+                        <h3>Комфорт</h3>
+                        <p>Я люблю хороший сервис и комфорт. На моих сеансах можно рассказывать веселые истории, обсуждать бывших, пить чай и есть сладости.</p>
+                    </div>
+                </div>
+                <div class="pleasure-item">
+                    <img src="https://static.tildacdn.info/tild3863-6162-4636-b332-623263616530/photo_2025-01-21_02-.jpg" alt="Подарочный набор" class="pleasure-img">
+                    <div class="pleasure-text">
+                        <h3>Подарочный набор</h3>
+                        <p>Его я выдаю каждому клиенту в конце сеанса. Наполнение:</p>
+                        <ul>
+                            <li>Крем для заживления</li>
+                            <li>Доп. плёнка</li>
+                            <li>Пластыри (ими можно удобно подклеить уголки плёнки)</li>
+                            <li>Милые наклейки</li>
+                            <li>Мои фирменные наклейки</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pleasure-item">
+                    <img src="https://static.tildacdn.info/tild3863-6162-4636-b332-623263616530/photo_2025-01-21_02-.jpg" alt="Столик с конфетами и чаем" class="pleasure-img">
+                    <div class="pleasure-text">
+                        <h3>Столик с конфетами и чаем</h3>
+                        <p>Он есть на каждом сеансе. Бывает, что ваш организм реагирует на боль пониженным сахаром - а я знаю, как это неприятно. В таких случаях спасает сладкое и вкусный чаёк. Но ещё я не против сделать перерыв :)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Яндекс карта -->
+    <section class="map-section">
+        <h2>Где я нахожусь</h2>
+        <div class="map-container">
+            <iframe 
+                src="https://yandex.by/map-widget/v1/?ll=30.305708%2C59.937845&mode=whatshere&whatshere%5Bpoint%5D=30.305051%2C59.938079&whatshere%5Bzoom%5D=16.76&z=16.76" 
+                width="600" 
+                height="600" 
+                frameborder="0" 
+                allowfullscreen="true">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Секция Бесплатная консультация -->
+    <section id="contact" class="contact-section">
+        <h2>Бесплатная консультация</h2>
+        <div class="contact-info">
+            <p>Связаться:</p>
+            <p>+7 922 436-26-06</p>
+            <p>(лучше писать в мессенджерах)</p>
+            <p>Email: <a href="mailto:saxarr.net@gmail.com">saxarr.net@gmail.com</a></p>
+            <!-- Ссылки на мессенджеры -->
+            <div class="messenger-links">
+                <a href="https://t.me/ваш_телеграм" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://wa.me/79224362606" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="viber://chat?number=79224362606" target="_blank" aria-label="Viber"><i class="fab fa-viber"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Скрипт для мобильного меню -->
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Закрыть меню при клике на ссылку (для улучшения UX)
+        const navLinks = navList.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
